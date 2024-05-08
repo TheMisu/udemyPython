@@ -10,10 +10,8 @@ nr_letters= int(input("How many letters would you like in your password?\n"))
 nr_symbols = int(input(f"How many symbols would you like?\n"))
 nr_numbers = int(input(f"How many numbers would you like?\n"))
 
-# init the num of used characters and a helper list
-used_letters = 0
-used_symbols = 0 
-used_numbers = 0
+# init the num of available chars and a helper list
+available_chars = [nr_letters, nr_symbols, nr_numbers]
 choices = [letters, symbols, numbers]
 
 # total pw len
@@ -23,8 +21,15 @@ total_len = nr_letters + nr_numbers + nr_symbols
 pw = ""
 for i in range(total_len):
     # choosing what type of char to generate
-    random_choice_index = random.randint(0, len(choices) - 1)
-    char_list = choices[random_choice_index]
+    repeat_check = True
+    while repeat_check:
+        random_choice_index = random.randint(0, len(choices) - 1)
+        
+        # if not enough chars of this type have been generated, then choose this type
+        if available_chars[random_choice_index] != 0:
+            available_chars[random_choice_index] -= 1
+            char_list = choices[random_choice_index]
+            repeat_check = False
 
     # choosing a random char from that list
     random_char_index = random.randint(0, len(char_list) - 1)
