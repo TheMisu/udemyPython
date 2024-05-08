@@ -10,3 +10,4 @@ My solutions to the tasks in Dr. Angela Yu's Python course.
 2. Tip Calculator: This task teaches us how to work with different data types and how to perform basic math in Python.  
 3. Tresure Island: This task teaches us how to use control flow (if/else) and logical operators in our programs. 
 4. Rock Paper Scissors: This task teaches us how to work with lists and the random module by having us implement the rock/paper/scissors game.
+5. Password Generator: This task teaches us how to work with for loops in order to access different list elements by having us create a random password generator.
