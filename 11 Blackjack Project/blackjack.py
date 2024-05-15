@@ -1,90 +1,134 @@
 import random
 import art
-
-# init the deck of cards (ace starts as 11pts, J/Q/K are all 10pts each)
-cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
-
-# init the user/computer hands and their scores
-user_cards = []
-user_score = 0
-computer_cards = []
-computer_score = 0
+import os
 
 
-# function that deals a card to the corresponding player
-def deal_cards(player):
-    # declaring the variables as global so that we can access them from inside the function
-    global user_score
-    global computer_score
+# defining a function that clears the console every time a new user needs to input data
+def clear_console():
+    # for windows
+    if os.name == "nt":
+        _ = os.system("cls")
 
-    # pick a random card
-    dealt_card_index = random.randint(0, len(cards) - 1)
-    card_score = cards[dealt_card_index]
-
-    # transforming the card if needed
-    if dealt_card_index ==  10:
-        dealt_card = "J"
-    elif dealt_card_index == 11:
-        dealt_card = "Q"
-    elif dealt_card_index == 12:
-        dealt_card = "K"
+    # for mac and linux (os.name is posix)
     else:
-        dealt_card = cards[dealt_card_index]
+        _ = os.system("clear")
+
+
+
+def deal_card():
+    """
+        Randomly picks a card from the deck and returns it.
+    """
+    deck = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+    return random.choice(deck)
+
+
+
+def count_score(player_hand):
+    """
+        Counts the score of the player's hand. If the player has an Ace and a score > 21, replace the Ace with 1.
+        If the player has Blackjack, return score = 0
+    """
+    score = sum(player_hand) 
+
+    # if the player has an ace (11) and score > 21, change the ace to 1
+    if 11 in player_hand and score > 21:
+        player_hand.remove(11)
+        player_hand.append(1)
+        score -= 10
     
-    # if the the user requested a card, then add it to user_cards
-    if player == "user":
-        user_cards.append(dealt_card)
-        user_score += card_score    
-    else: # otherwise add it to computer_cards
-        computer_cards.append(dealt_card)
-        computer_score += card_score
+    # if the user has blackjack, set score to 0 (easier to deal with blackjack later)
+    if score == 21 and len(player_hand) == 2:
+        score = 0
+
+    return score
 
 
-# starting the game
-input_choice = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ").lower()
-if input_choice == "y":
-    play_game = True
-    print(art.logo)
-else:
-    play_game = False
-    print("Ok. Bye bye! ")
-
-
-# cards are never removed from the deck and they are randomly chosen
-# so we can (initially) just deal twice to the user/computer instead of alternating between them
-deal_cards("user")
-deal_cards("user")
-deal_cards("computer")
-deal_cards("computer")
-
-
-# run the game if the user chooses to play
-while play_game:
-    # show the user their cards/the computer's first card
-    print(f"\tYour cards: {user_cards}, current score: {user_score}")
-    print(f"\tComputer's first card: {computer_cards[0]}")
-
-    # if the user has blackjack
-    if user_score == 21 and len(user_cards) == 2:
-        print("Win with a Blackjack. 😎")
-
-    # ask if the user wants to hit or pass
-    get_another_card = input("Type 'y' to get another card, type 'n' to pass: ")
-
-    # deal another card to the user
-    if get_another_card == "y":
-        deal_cards("user")
-    # print their final hand/score and let them know if they won
+def decide_winner(user_score, computer_score):
+    """
+        Decide who won the game based on their scores. Prints a custom message based on the output
+        of the if statements.    
+    """
+    # deal with the individual cases
+    if user_score == computer_score:
+        print("Draw. Nobody won.")
+    elif computer_score == 0:
+        print("You lost. The dealer has Blackjack.")
+    elif user_score == 0:
+        print("You won with a Blackjack 😎")
+    # if both the user and the computer are over, the user loses
+    elif user_score > 21 and computer_score > 21:
+        print("You went over 21. You lost! ")
+    elif user_score > 21:
+        print("You went over 21. You lost! ")
+    elif computer_score > 21:
+        print("The dealer went over 21. You won! ")
+    elif user_score > computer_score:
+        print("You won! ")
     else:
-        play_game = False
-        print(f"\tYour final hand: {user_cards}, final score: {user_score}")
-        print(f"\tComputer's final hand: {computer_cards}, final score: {computer_score}")
+        print("You lost... ")
 
-        if user_score > computer_score:
-            print("You won! :)")
 
-# testing the code
-# deal_cards("user")
-# deal_cards("user")
-# print(user_cards)
-# print(user_score)
+
+def run_game():
+    """
+        Runs the Blackjack game until the user goes over 21 or refuses to hit.
+    """
+    print(art.logo)
+
+    # init useful variables like player/dealer hands and keep_playing 
+    player_hand = []
+    dealer_hand = []
+    keep_playing = True
+
+
+    # deal 2 cards to the player and the dealer
+    for i in range(2):
+        player_hand.append(deal_card())
+        dealer_hand.append(deal_card())
+
+
+    # while loop that keeps the game running
+    while keep_playing:
+        # check the scores and print the hands/score
+        player_score = count_score(player_hand)
+        dealer_score = count_score(dealer_hand)
+
+        print(f"\tYour hand: {player_hand}, current score: {player_score}")
+        print(f"\tDealer's first card: {dealer_hand[0]}")
+
+        # end the game if any of the players has Blackjack or if player_score > 21
+        if player_score == 0 or dealer_score == 0 or player_score > 21:
+            keep_playing = False
+        # otherwise ask the user if they want to hit or not
+        else:
+            player_hit = input("Type 'y' if you want to get another card, type 'n' to pass: ")
+            if player_hit == "y":
+                player_hand.append(deal_card())
+            else:
+                keep_playing = False
+    
+    # once the player is done, if the computer has no blackjack and score < 17, it must hit
+    while dealer_score != 0 and dealer_score < 17:
+        dealer_hand.append(deal_card())
+        dealer_score = count_score(dealer_hand)
+
+
+    # print the final hands/scores and announce the winner
+    print(f"Your final hand: {player_hand}, final score: {player_score}")
+    print(f"Dealer's final hand: {dealer_hand}, final score: {dealer_score}")
+    decide_winner(player_score, dealer_score)
+
+
+# start/restart the game
+stop_game = False
+while not stop_game:
+    clear_console()
+    run_game()
+    print("\n")
+
+    play_again = input("Type 'y' if you want to play another game, type 'n' if you want to quit: ")
+    if play_again == "n":
+        stop_game = True
+        clear_console()
+        print("Bye bye!")
