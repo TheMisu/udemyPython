@@ -16,3 +16,4 @@ My solutions to the tasks in Dr. Angela Yu's Python course.
 8. Caeser Cipher: This task teaches us how to define our own functions in Python by having us write our own Caeser cipher encryption/decryption program.
 9. Blind Auction: This task teaches us how to use dictionaries in order to store data as key/value pairs by having us write a blind auction program.
 10. Calculator: This task teaches us how to use return functions (and recursion) by having us build a basic calculator app.
+11. Blackjack Project: This project solidifies the knowledge gathered so far (loops/lists/functions/dictionaries) by having us build a blackjack game.
