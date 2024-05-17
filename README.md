@@ -18,3 +18,4 @@ My solutions to the tasks in Dr. Angela Yu's Python course.
 10. Calculator: This task teaches us how to use return functions (and recursion) by having us build a basic calculator app.
 11. Blackjack Project: This project solidifies the knowledge gathered so far (loops/lists/functions/dictionaries) by having us build a blackjack game.
 12. Number Guessing Game: This project should teach us how to use global/local variables (seems like I only used local vars though).
+14. Higher Lower Game: This project solidifies the knowledge we've gathered so far by having us build a (console output only) HigherLower game.
