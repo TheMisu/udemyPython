@@ -19,3 +19,4 @@ My solutions to the tasks in Dr. Angela Yu's Python course.
 11. Blackjack Project: This project solidifies the knowledge gathered so far (loops/lists/functions/dictionaries) by having us build a blackjack game.
 12. Number Guessing Game: This project should teach us how to use global/local variables (seems like I only used local vars though).
 14. Higher Lower Game: This project solidifies the knowledge we've gathered so far by having us build a (console output only) HigherLower game.
+15. Coffee Machine: This task introduces the concept of OOP and asks us to build a coffee machine that can prepare drinks, give a report on its resources/profit, take inputted resources from the user and turn itself off.
