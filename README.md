@@ -22,3 +22,4 @@ My solutions to the tasks in Dr. Angela Yu's Python course.
 15. Coffee Machine: This task introduces the concept of OOP and asks us to build a coffee machine that can prepare drinks, give a report on its resources/profit, take inputted resources from the user and turn itself off.
 16. OOP Coffee Machine: This task has us build the same coffee machine as in the previous task, using OOP only. The course provided us with the needed classes, we have to just use them properly in the main.py file.
 17. Quiz Project: This task teaches us how to write our own classes in Python by having us build a basic quiz game using OOP only.
+18. Turtle: This task teaches us how to use the Turtle module to draw things in Python.
