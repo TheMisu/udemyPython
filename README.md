@@ -25,3 +25,4 @@ My solutions to the tasks in Dr. Angela Yu's Python course.
 18. Turtle: This task teaches us how to use the Turtle module to draw things in Python.
 19. Instances, State, Higher Order Functions:
     - 19.1 (Etch a Sketch) - This task introduces the concept of higher order function and teaches us how to add event listeners to Turtle. 
+    - 19.2 (Turtle Race) - This task has us implement a race between objects using Turtle. 
