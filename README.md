@@ -23,3 +23,5 @@ My solutions to the tasks in Dr. Angela Yu's Python course.
 16. OOP Coffee Machine: This task has us build the same coffee machine as in the previous task, using OOP only. The course provided us with the needed classes, we have to just use them properly in the main.py file.
 17. Quiz Project: This task teaches us how to write our own classes in Python by having us build a basic quiz game using OOP only.
 18. Turtle: This task teaches us how to use the Turtle module to draw things in Python.
+19. Instances, State, Higher Order Functions:
+    - 19.1 (Etch a Sketch) - This task introduces the concept of higher order function and teaches us how to add event listeners to Turtle. 
