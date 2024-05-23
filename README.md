@@ -26,3 +26,4 @@ My solutions to the tasks in Dr. Angela Yu's Python course.
 19. Instances, State, Higher Order Functions:
     - 19.1 (Etch a Sketch) - This task introduces the concept of higher order function and teaches us how to add event listeners to Turtle. 
     - 19.2 (Turtle Race) - This task has us implement a race between objects using Turtle. 
+20. The Snake Game: This task has us build the classic Snake game in Python using OOP and Turtle.
