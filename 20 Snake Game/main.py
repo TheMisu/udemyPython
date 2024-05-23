@@ -1,4 +1,5 @@
 # imports
+from scoreboard import Scoreboard
 from snake import Snake
 from food import Food
 from turtle import Turtle, Screen
@@ -15,6 +16,7 @@ screen.tracer(0) # makes the screen not update on its own (helps with the moving
 # creating the snake
 snake = Snake()
 food = Food()
+scoreboard = Scoreboard()
 
 # adding event listeners to the screen so that we can control the snake
 screen.listen()
@@ -38,6 +40,14 @@ while game_is_on:
     if snake.head.distance(food) < 20:
         # changing the foods position
         food.change_pos()
+        scoreboard.increase_score()
+
+
+    # checking if the snake hit the wall
+    if snake.head.xcor() > 280 or snake.head.xcor() < -300 or snake.head.ycor() > 300 or snake.head.ycor() < -280:
+        game_is_on = False
+        scoreboard.game_over()
+
 
 # exit on click to facilitate testing
 screen.exitonclick()
