@@ -39,6 +39,7 @@ while game_is_on:
     # checking if the snake ate/hit the food
     if snake.head.distance(food) < 20:
         # changing the foods position
+        snake.increase_size()
         food.change_pos()
         scoreboard.increase_score()
 
@@ -48,6 +49,12 @@ while game_is_on:
         game_is_on = False
         scoreboard.game_over()
 
+
+    # checking if the snake hit itself
+    for block in snake.body[1:]:
+        if snake.head.distance(block) < 10:
+            game_is_on = False
+            scoreboard.game_over()
 
 # exit on click to facilitate testing
 screen.exitonclick()

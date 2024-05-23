@@ -23,11 +23,24 @@ class Snake:
         Function that creates the snake object (seen by the user)
         """
         for body_part_position in STARTING_BODY_POS:
-            new_snake_part = Turtle("square")
-            new_snake_part.penup()
-            new_snake_part.color("white")
-            new_snake_part.goto(body_part_position)
-            self.body.append(new_snake_part)
+            self.add_block(body_part_position)
+    
+    def add_block(self, position):
+        """
+        Method that adds a block to the snake's body at the requested position 
+        """
+        new_snake_part = Turtle("square")
+        new_snake_part.penup()
+        new_snake_part.color("white")
+        new_snake_part.goto(position)
+        self.body.append(new_snake_part)
+
+
+    def increase_size(self):
+        """
+        Method that adds a new block at the end of the snake
+        """
+        self.add_block(self.body[-1].position())
     
 
     def move(self):
