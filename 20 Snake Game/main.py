@@ -1,5 +1,6 @@
 # imports
 from snake import Snake
+from food import Food
 from turtle import Turtle, Screen
 import time
 
@@ -13,7 +14,7 @@ screen.tracer(0) # makes the screen not update on its own (helps with the moving
 
 # creating the snake
 snake = Snake()
-
+food = Food()
 
 # adding event listeners to the screen so that we can control the snake
 screen.listen()

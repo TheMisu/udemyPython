@@ -1,7 +1,6 @@
 # imports
 from turtle import Turtle
 
-
 # few useful constants
 STARTING_BODY_POS = [(0, 0), (-20, 0), (-40, 0)]
 MOVE_DIST = 20
