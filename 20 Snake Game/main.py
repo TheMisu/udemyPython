@@ -30,7 +30,14 @@ while game_is_on:
     screen.update() # upload/reload the screen
     time.sleep(0.1) # helps with the animation
     
+    # moving the snake
     snake.move() 
+
+
+    # checking if the snake ate/hit the food
+    if snake.head.distance(food) < 20:
+        # changing the foods position
+        food.change_pos()
 
 # exit on click to facilitate testing
 screen.exitonclick()
