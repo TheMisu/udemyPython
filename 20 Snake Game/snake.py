@@ -1,7 +1,14 @@
 # imports
 from turtle import Turtle
+
+
+# few useful constants
 STARTING_BODY_POS = [(0, 0), (-20, 0), (-40, 0)]
 MOVE_DIST = 20
+UP = 90
+DOWN = 270 
+LEFT = 180
+RIGHT = 0
 
 class Snake:
     def __init__(self):
@@ -45,22 +52,30 @@ class Snake:
         """
         FUnction that turns the snake upwards
         """
-        self.head.setheading(90) 
+        # only allow the snake to turn up if it is not moving downwards
+        if self.head.heading() != DOWN:
+            self.head.setheading(UP) 
 
     def down(self):
         """
         FUnction that turns the snake downwards
         """
-        self.head.setheading(270)
+        # only allow the snake to turn if it is not moving up
+        if self.head.heading() != UP:
+            self.head.setheading(DOWN)
     
     def left(self):
         """
         FUnction that turns the snake to the left
         """
-        self.head.setheading(180) 
+        # only allow the snake to turn if it is not moving to the right
+        if self.head.heading() != RIGHT:
+            self.head.setheading(LEFT)
 
     def right(self):
         """
         FUnction that turns the snake to the right
         """
-        self.head.setheading(0)
+        # only allow the snake to turn if it is not moving to the left
+        if self.head.heading() != LEFT:
+            self.head.setheading(RIGHT)
