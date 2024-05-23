@@ -15,6 +15,13 @@ screen.tracer(0) # makes the screen not update on its own (helps with the moving
 snake = Snake()
 
 
+# adding event listeners to the screen so that we can control the snake
+screen.listen()
+screen.onkey(snake.up, "w")
+screen.onkey(snake.down, "s")
+screen.onkey(snake.left, "a")
+screen.onkey(snake.right, "d")
+
 # while loop for the game
 game_is_on = True
 
