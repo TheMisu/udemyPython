@@ -10,7 +10,7 @@ class Snake:
         """
         self.body = []
         self.create_snake()
-    
+        self.head = self.body[0]    
 
     def create_snake(self):
         """
@@ -39,3 +39,28 @@ class Snake:
 
         # move the snake's head
         self.body[0].forward(MOVE_DIST)
+
+
+    def up(self):
+        """
+        FUnction that turns the snake upwards
+        """
+        self.head.setheading(90) 
+
+    def down(self):
+        """
+        FUnction that turns the snake downwards
+        """
+        self.head.setheading(270)
+    
+    def left(self):
+        """
+        FUnction that turns the snake to the left
+        """
+        self.head.setheading(180) 
+
+    def right(self):
+        """
+        FUnction that turns the snake to the right
+        """
+        self.head.setheading(0)
